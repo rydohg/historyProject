@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="bower_components/paper-styles/typography.html">
+    <link rel="import" href="bower_components/paper-styles/color.html">
+    <link rel="import" href="bower_components/neon-animation/neon-animated-pages.html">
+    <link rel="import" href="bower_components/neon-animation/neon-animatable.html">
+    <link rel="import" href="bower_components/neon-animation/neon-animations.html">
+    <link rel="import" href="bower_components/iron-icons/iron-icons.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+
+    <style is="custom-style">
+        body {
+            overflow: hidden;
+            color: #fff;
+            @apply(--layout-fullbleed);
+            @apply(--layout-vertical);
+        }
+        neon-animated-pages {
+            position: relative;
+            @apply(--layout-flex);
+        }
+        neon-animatable {
+            background: var(--paper-blue-grey-500);
+            @apply(--layout-vertical);
+            @apply(--layout-center);
+            @apply(--paper-font-body1);
+        }
+        #toolbar {
+            height: 75px;
+            position: absolute;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            right: 0;
+            @apply(--layout-horizontal-reverse);
+        }
+        #toolbar paper-icon-button {
+            margin: 16px;
+        }
+        .content {
+            margin-left: 72px;
+            font-weight: 300 !important;
+            @apply(--layout-horizontal);
+            @apply(--layout-self-start);
+        }
+        .main-title {
+            margin-top: 72px;
+            @apply(--paper-font-display4);
+        }
+        .main-subtitle {
+            margin-top: 500px;
+            @apply(--paper-font-display2);
+        }
+        .slide-title {
+            margin-left: 36px;
+            @apply(--paper-font-display2);
+            @apply(--layout-self-start);
+        }
+        .slide-with-picture {
+            display: flex;
+            width: 95%;
+            justify-content: space-between;
+        }
+        .picture-caption {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            height: 100%;
+        }
+        .side-text {
+            width: 50%;
+        }
+        .side-image {
+            width: 40%;
+        }
+        .list {
+            margin: 0;
+            width: 97%;
+            font-weight: 300 !important;
+            @apply(--paper-font-display2);
+        }
+        .bottom {
+            margin-top: 62%;
+            width: 90%;
+            align-self: flex-end;
+            display: flex;
+            justify-content: space-between;
+            color: #000;
+            @apply(--paper-font-display2);
+        }
+        neon-animatable:first-child {
+            background: url("https://www.locumjobsonline.com/blog/wp-content/uploads/2013/02/Photoxpress_14963733.jpg");
+            background-size: cover;
+        }
+        neon-animatable:nth-child(2) {}
+        neon-animatable:nth-child(3) {
+            background: url("images/article2.png");
+            background-size: cover;
+        }
+        neon-animatable:nth-child(6) {
+            background: url("http://static4.businessinsider.com/image/583c8f6bba6eb67d058b66d9-1190-625/heres-the-final-2016-electoral-college-map.jpg") no-repeat;
+            background-size: contain;
+        }
+    </style>
+    <title>Electoral College</title>
+</head>
+<body>
+    <template is="dom-bind">
+        <div id="toolbar">
+            <paper-icon-button icon="fullscreen" title="fullscreen" class="fullscreenIcon" onClick="toggleFullScreen()"></paper-icon-button>
+        </div>
+        <neon-animated-pages id="pages" selected="[[selected]]" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]" on-click="_onClick">
+            <neon-animatable>
+                <h3 class="main-title">The Electoral College</h3>
+                <p class="main-subtitle">By: Ryan Doherty</p>
+            </neon-animatable>
+            <neon-animatable>
+                <h3 class="slide-title">Why do we have this system?</h3>
+                <div class="content">
+                    <ul class="list">
+                        <li>
+                            One of the big questions the Founding Fathers had to answer was how the new government would choose the President.
+                            <ul>
+                                <li>
+                                    They originally had two ideas which they thought had problems
+                                    <ul>
+                                        <li>
+                                            Direct election- Where people vote directly for President. <br>
+                                            Their problem with this was that the population wasn't well informed
+                                        </li>
+                                        <li>
+                                            Elected by Congress- Where only the Congress voted for the president. <br>
+                                            Their problem with this was that it had violated the idea of an independent executive branch.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    The Compromise
+                                    <ul>
+                                        <li>
+                                            In the end they decided on an indirect popular vote, where <br>
+                                            "Each State shall appoint,
+                                            in such Manner as the Legislature thereof may direct, a Number of Electors, equal to the whole Number
+                                            of Senators and Representatives to which the State may be entitled in the Congress: but no Senator
+                                            or Representative, or Person holding an Office of Trust or Profit under the United States, shall be appointed an Elector."<br>
+                                            In this system the Electoral College, as it later became known as, would serve as a check on the popular vote.
+                                            It was to be made of educated, non-emotion driven electors.
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </neon-animatable>
+            <neon-animatable><!-- Article 2 Picture--></neon-animatable>
+            <neon-animatable>
+                <h3 class="slide-title">What are the problems with the Electoral College?</h3>
+                <div class="slide-with-picture">
+                    <div class="side-text">
+                        <ul class="list">
+                            <li>Winner Take All- Where the winner of the popular vote in the state got all of that state's electors. This is what most states use today.
+                                <ul>
+                                    <li>This makes it so that the minority party in a state goes unrepresented.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Underrepresented voters
+                                <ul>
+                                    <li>The state of Wyoming have 3 electoral votes and a population of 584,153</li>
+                                    <li>While California has 55 electoral votes and a population of 39,144,818</li>
+                                    <li>
+                                        Some simple math shows that Wyoming has 1 elector for every 193,717 people while California has 1 elector for every 711,723 people
+                                        meaning that a person in Wyoming is equal to 3.67 Californians. <br>
+                                        Not only that but if Californians had the same representation as Wyomingites, California would have 202.1 electors.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="side-image">
+                        <img src="images/cartogram.png" alt="Cartogram">
+                    </div>
+                </div>
+            </neon-animatable>
+            <neon-animatable>
+                <h3 class="slide-title">Common arguments for the Electoral College and rebuttals </h3>
+                <div class="slide-with-picture">
+                    <div class="side-text">
+                        <ul class="list">
+                            <li>
+                                "Without it presidential candidates would ignore rural areas"
+                                <ul>
+                                    <li>Why should a candidate go to places with very few people as opposed to where lots of people live in the short few months of a campaign?</li>
+                                </ul>
+                            </li>
+                            <li>
+                                "It provides a check on the popular vote"
+                                <ul>
+                                    <li>
+                                        While that was the original purpose of the Electoral College, it doesn't serve as a check anymore.
+                                        This is because of states passing laws that punish "faithless electors" like Washington's $1000 fine and
+                                        electors are no longer independent like the Founders intended. Instead electors are chosen
+                                        based on their loyalty to their respective party</li>
+                                    <li>
+                                        <a href="http://www.ncsl.org/research/elections-and-campaigns/the-electoral-college.aspx#faithless">
+                                        http://www.ncsl.org/research/elections-and-campaigns/the-electoral-college.aspx#faithless</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="side-image">
+                        <img src="images/electoralstates.jpg" alt="Electoral States of America">
+                    </div>
+                </div>
+            </neon-animatable>
+            <neon-animatable>
+                <div class="picture-caption">
+                    <div class="bottom">
+                        <p>65,844,610</p>
+                        <p>2,864,974</p>
+                        <p>62,979,636</p>
+                    </div>
+                </div>
+            </neon-animatable>
+            <neon-animatable>
+                <h3 class="slide-title">Alternatives</h3>
+                <div class="content">
+                    <ul class="list">
+                        <li>Direct Vote (Popular vote) where everyone directly votes for the President</li>
+                        <li>Proportionally giving electoral votes based on a states popular vote</li>
+                        <li>
+                            National Popular Vote Interstate Compact (NPVIC)
+                            <ul>
+                                <li>
+                                    According to Florida HB 311, the NPVIC says that each state under the NPVIC
+                                    is to allocate its electoral votes towards the winner of the national popular vote.
+                                    This doesn't need a constitutional amendment because it is an agreement between states (interstate compact).
+                                </li>
+                                <li>
+                                    <br>
+                                    <img src="images/npvic.png" height="399" width="450" alt="NPVIC">
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </neon-animatable>
+            <neon-animatable>
+                <h3 class="slide-title">Sources</h3>
+                <div class="content">
+                    <ul class="list">
+                        <li>http://www.ncsl.org/research/elections-and-campaigns/the-electoral-college.aspx#faithless</li>
+                        <li>http://cookpolitical.com/story/10174</li>
+                        <li>http://www.americanbar.org/publications/insights_on_law_andsociety/13/fall_2012/picking_the_president.html</li>
+                        <li>https://www.flsenate.gov/Session/Bill/2017/311/BillText/__/PDF</li>
+                    </ul>
+                </div>
+            </neon-animatable>
+        </neon-animated-pages>
+    </template>
+    <script>
+        // 0 based
+        var numOfSlides = 7;
+
+        function toggleFullScreen() {
+            if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+                (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+                if (document.documentElement.requestFullScreen) {
+                    document.documentElement.requestFullScreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullScreen) {
+                    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+            } else {
+                if (document.cancelFullScreen) {
+                    document.cancelFullScreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }
+        }
+        var scope = document.querySelector('template[is="dom-bind"]');
+        scope.selected = 0;
+        scope._onClick = function(e) {
+            if ((window.innerWidth / 2) < e.clientX){
+                this.entryAnimation = 'slide-from-right-animation';
+                this.exitAnimation = 'slide-left-animation';
+                this.selected = this.selected === numOfSlides ? 0 : (this.selected + 1);
+            } else {
+                this.entryAnimation = 'slide-from-left-animation';
+                this.exitAnimation = 'slide-right-animation';
+                this.selected = this.selected === 0 ? numOfSlides : (this.selected - 1);
+            }
+        };
+        document.onkeydown = function(e) {
+            switch (e.keyCode) {
+                case 37:
+                    scope.entryAnimation = 'slide-from-left-animation';
+                    scope.exitAnimation = 'slide-right-animation';
+                    scope.selected = scope.selected === 0 ? numOfSlides : (scope.selected - 1);
+                    break;
+                case 39:
+                    scope.entryAnimation = 'slide-from-right-animation';
+                    scope.exitAnimation = 'slide-left-animation';
+                    scope.selected = scope.selected === numOfSlides ? 0 : (scope.selected + 1);
+                    break;
+            }
+        };
+    </script>
+</body>
+</html>
